@@ -1,0 +1,67 @@
+{% extends 'actions/base.html' %}
+{% block content %}
+<div class="active-pink-3 active-pink-4 mb-4">
+<form action="" method="POST">
+        {% csrf_token%}
+  <input class="form-control" type="text" value="" placeholder="I could not make search fuction work as of now but i will fix it soon." aria-label="Search">
+  <p></p>
+  <a href="{" class="btn btn-warning btn-sm">search</a>
+</div>
+</form>
+<div class="class row" >
+    <div class="col-sm-2">
+        <h4 class="text-center alert alert-info">Add new car</h4>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-success" value="Add">
+        </form>
+    </div>
+<div class="col-sm-10">
+    <h4 class ="text-center alert alert-info">Viwe All Cars Here</h4>
+    {% if 'ac' %}
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Company</th>
+            <th scope="col">Model</th>
+            <th scope="col">Color</th>
+            <th scope="col"> Date </th>
+            <th scope="col">Car Price</th>
+            <th scope="col">E-Capacity</th>
+            <th scope="col">No.plate</th>
+            <th scope="col">seat</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for c in ac %}
+          <tr>
+            <th scope="row">{{c.id}}</th>
+            <td>{{c.Company}}</td>
+            <td>{{c.Model}}</td>
+            <td>{{c.Color}}</td>
+            <td>{{c.Date}}</td>
+            <td>{{c.Price}}</td> 
+            <td>{{c.Engine_capacity}}</td>
+            <td>{{c.Number_plate}}</td>
+            <td>{{c.Seating_capacity}}</td>
+            <td>
+                <a href="{% url 'updatecar' c.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <form action="{% url 'deletecar' c.id %}" method="POST" class="d-inline">
+                    {% csrf_token %}
+
+
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                    
+                </form>
+            </td>
+          </tr>
+         {%endfor%}
+        </tbody>
+      </table>
+    {% endif %}
+</div>
+</div>
+{% endblock content %}

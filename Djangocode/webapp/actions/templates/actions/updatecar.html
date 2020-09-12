@@ -1,0 +1,14 @@
+{% extends 'actions/base.html' %}
+{% block content %}
+<div class="raw">
+	<div class="col-sm-8">
+		<h4 class="aletr aletr-info">Update Car</h4>
+		<h6 class="aletr aletr-info">Please go back to home to verify changes</h6>
+		<form action="" method="POST">
+			{%csrf_token%}
+			{{form.as_p}}
+		<input type="submit" class="btn btn-success" value="Update">
+		<a href="{% url 'addandshow' %}" class="btn btn-info"> Back to Home </a>
+	</div>	
+</div>
+{% endblock content %}
